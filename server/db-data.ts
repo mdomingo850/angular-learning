@@ -1,3 +1,16 @@
+export const LEGALENTITIES: any = {
+  1: {
+    id: 1,
+    name: "Company A",
+    status: "Active"
+  },
+  2: {
+    id: 2,
+    name: "Company B",
+    status: "Inactive"
+  }
+}
+
 export const COURSES: any = {
 
 

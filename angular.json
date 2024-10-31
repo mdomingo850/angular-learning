@@ -107,8 +107,8 @@
     }
   },
   "schematics": {
-    "@schematics/angular:component": {
-      "style": "scss"
+    "@schematics/angular:component-scss": {
+      "styleext": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": ""

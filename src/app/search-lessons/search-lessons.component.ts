@@ -1,20 +1,7 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
 import {Course} from '../model/course';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  startWith,
-  tap,
-  delay,
-  map,
-  concatMap,
-  switchMap,
-  withLatestFrom,
-  concatAll, shareReplay
-} from 'rxjs/operators';
-import {merge, fromEvent, Observable, concat} from 'rxjs';
-import {Lesson} from '../model/lesson';
+import {Observable} from 'rxjs';
+import { CoursesStore } from '../services/courses.store';
 
 
 @Component({
@@ -24,14 +11,24 @@ import {Lesson} from '../model/lesson';
 })
 export class SearchLessonsComponent implements OnInit {
 
-  constructor() {
+  courses$: Observable<Course[]>;
 
+  constructor(private coursesStore: CoursesStore) {}
 
-  }
+  ngAfterViewInit() {}
 
   ngOnInit() {
+    this.courses$ = this.coursesStore.courses$;
+  }
 
+  import()
+  {
+    this.coursesStore.loadAllCourses();
+  }
 
+  receiveSubmission(courses: Course[])
+  {
+    let foo = 1;
   }
 
 }

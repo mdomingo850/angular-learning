@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Test</h2>
+
+<messages></messages>
+<loading></loading>
+
+<mat-dialog-content [formGroup]="form">
+
+    <div formArrayName="tableRows">
+        <div *ngFor="let row of form.controls['tableRows']; let i = index">
+            <input formControlName="{{ i }}.description">
+            <input formControlName="{{ i }}.category">
+            <button (click)="removeTableRow(i)">Remove</button>
+        </div>
+    </div>
+
+    <div class="form-val">
+        {{form.value | json}}
+      </div>
+
+    <button mat-raised-button
+            (click)="close()">
+      Close
+    </button>
+    
+    <button mat-raised-button color="primary" #saveButton (click)="save()">
+      Save
+    </button>
+    <div class="form-val">
+        test 
+      </div>
+
+    
+
+</mat-dialog-content>
+
+
+
+

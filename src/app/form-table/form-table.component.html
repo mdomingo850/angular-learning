@@ -1,0 +1,49 @@
+<form class="add-lessons-form" [formGroup]="form" #tableForm (ngSubmit)="submit(tableForm)">
+    <mat-label>Valid: {{getValidCount()}} Invalid: {{getInvalidCount()}}</mat-label>
+    <ng-container formArrayName="formArray">
+        <ng-container *ngFor="let lessonForm of formArray.controls; let i = index">
+            <div style="display:flex" [formGroup]="lessonForm">
+              <div>
+                <mat-form-field appearance="fill">
+                      <input matInput
+                             formControlName="description"
+                             placeholder="description"
+                             >
+                </mat-form-field>
+                  <mat-error *ngIf="getDescription(i).errors?.required && getDescription(i).touched"> Description is mandatory</mat-error>
+              </div>
+ 
+              <div>
+
+                <mat-form-field appearance="fill">
+                  <input matInput
+                  formControlName="category"
+                  placeholder="category"
+                  >
+                </mat-form-field>
+                <mat-error *ngIf="getCategory(i).errors?.required && getCategory(i).touched"> category is mandatory</mat-error>
+              </div>
+              <div>{{lessonForm.value.price}}</div>
+              <mat-icon class="delete-btn" (click)="removeTableRow(i)">
+                    delete_forever</mat-icon>
+            </div>
+        
+        </ng-container>
+    </ng-container>
+  
+    <input [disabled]="getValidCount() === 0" type="submit" value="Submit"/>
+
+
+    <div>
+      Form Values: {{form.value | json}}
+    </div>
+
+    
+    <div>
+      Is Valid: {{form.valid | json}}
+    </div>
+</form>
+
+<button mat-mini-fab (click)="addTableRow()">
+    <mat-icon class="add-course-btn">add</mat-icon>
+</button>
